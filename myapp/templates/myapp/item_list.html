@@ -1,0 +1,99 @@
+<!-- myapp/templates/myapp/item_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        .item-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .item {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 45%;
+            margin: 10px 0;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .item h2 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .item p {
+            margin: 0 0 5px;
+            line-height: 1.5;
+        }
+        .price {
+            font-weight: bold;
+            color: #77aaff;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Available Items</h1>
+    </header>
+    <div class="container">
+        <div class="item-list">
+            {% for item in items %}
+            <div class="item">
+                <h2>{{ item.name }}</h2>
+                <p>{{ item.description }}</p>
+                <p class="price">₦{{ item.price }}</p>
+                {% if item.available %}
+                    <p>Status: <span style="color: green;">Available</span></p>
+                {% else %}
+                    <p>Status: <span style="color: red;">Out of stock</span></p>
+                {% endif %}
+                <p><a href="{% url 'item_detail' id=item.id %}">View Details</a></p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!-- myapp/templates/myapp/item_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ item.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        .item-detail {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .item-detail h2 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .item-detail p {
+            margin: 0 0 10px;
+            line-height: 1.5;
+        }
+        .price {
+            font-weight: bold;
+            color: #77aaff;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #333;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Item Detail</h1>
+    </header>
+    <div class="container">
+        <div class="item-detail">
+            <h2>{{ item.name }}</h2>
+            <p>{{ item.description }}</p>
+            <p class="price">₦{{ item.price }}</p>
+            {% if item.available %}
+                <p>Status: <span style="color: green;">Available</span></p>
+            {% else %}
+                <p>Status: <span style="color: red;">Out of stock</span></p>
+            {% endif %}
+            <a href="{% url 'item_list' %}" class="back-link">Back to Item List</a>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </div>
+</body>
+</html>
